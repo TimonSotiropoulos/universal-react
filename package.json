@@ -4,7 +4,9 @@
   "description": "A Universal/Isomorphic React Application",
   "main": "index.js",
   "scripts": {
-    "development": "cp src/views/index.html public/index.html && NODE_ENV=development webpack && webpack-dev-server --content-base public/ --hot --inline --devtool inline-source-map --history-api-fallback"
+    "development": "cp src/views/index.html public/index.html && NODE_ENV=development webpack && webpack-dev-server --content-base public/ --hot --inline --devtool inline-source-map --history-api-fallback",
+    "production": "rm -rf public/index.html && NODE_ENV=production webpack -p && NODE_ENV=production node app.js",
+    "start": "npm run production"
   },
   "author": "Timon Sotiropoulos",
   "license": "MIT",
@@ -17,6 +19,7 @@
     "flux": "^2.1.1",
     "history": "^3.0.0",
     "lodash": "^4.13.1",
+    "nunjucks": "^2.4.2",
     "react": "^15.1.0",
     "react-dom": "^15.1.0",
     "react-router": "^2.4.1",
