@@ -5,6 +5,9 @@
 import React, { Component } from 'react';
 import { Route, IndexRoute } from 'react-router';
 
+// Store
+import AppStore from './stores/AppStore';
+
 // Import Components Files Here
 import App from '../components/App.js';
 import Error404 from '../components/Error.js';
