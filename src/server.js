@@ -2,8 +2,11 @@
 // The Server
 // *****************************************************************************
 import React from 'react';
+import { createStore, combineReducers } from 'redux';
+import { Provider } from 'react-redux';
 import { match, RoutingContext } from 'react-router';
 import ReactDOMServer from 'react-dom/server';
+import * as reducers from 'reducers';
 import express from 'express';
 import nunjucks from 'nunjucks';
 
@@ -23,10 +26,19 @@ app.use('/', express.static(__dirname));
 app.set('port', (process.env.PORT || 3000))
 
 app.get('*', (req, res) => {
-    console.log(req.url);
+    const location = createLocation(req.url);
+    const reducer = combineReducers(reducers);
+    const store = createStore(reducer);
+
     match({routes, location: req.url }, (error, redirectLocation, renderProps) => {
 
-        const reactMarkup = ReactDOMServer.renderToStaticMarkup(<RoutingContext {...renderProps}/>)
+        const reactMarkup = ReactDOMServer.renderToStaticMarkup(
+            <Provider store={store}>
+                <RoutingContext {...renderProps}/>
+            </Provider>
+        )
+
+        const initialState = store.getState();
 
         res.locals.reactMarkup = reactMarkup;
 
