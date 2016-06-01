@@ -17,11 +17,13 @@ nunjucks.configure('./src/views', {
     autoescape: false,
     express: app
 });
-app.use('/', express.static(__dirname + '/public/'));
+
+app.use('/', express.static(__dirname));
+
 app.set('port', (process.env.PORT || 3000))
 
 app.get('*', (req, res) => {
-
+    console.log(req.url);
     match({routes, location: req.url }, (error, redirectLocation, renderProps) => {
 
         const reactMarkup = ReactDOMServer.renderToStaticMarkup(<RoutingContext {...renderProps}/>)
