@@ -3,9 +3,12 @@
 // *****************************************************************************
 
 var fs = require('fs');
+var autoprefixer = require('autoprefixer');
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 // Setup the React Hot Loader if we are working in the development environment
 if (process.env.NODE_ENV === 'development') {
+    console.log("Running Development");
     var loaders = ['react-hot', 'babel'];
 } else {
     var loaders = ['babel'];
@@ -34,6 +37,18 @@ module.exports = {
             test: /\.js$/,
             loaders: loaders,
             exclude: /node_modules/
-        }]
-    }
+        },{
+            test: /\.scss/,
+            loader: ExtractTextPlugin.extract(["css","postcss", "sass"])
+        }],
+    },
+    postcss: [ autoprefixer({ browsers: ['last 3 versions'] }) ],
+    plugins: [
+        new ExtractTextPlugin("../css/styles.css", {
+            allChunks: true,
+            disable: false
+        })
+    ],
+
+
 };
