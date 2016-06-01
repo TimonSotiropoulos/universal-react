@@ -18,6 +18,12 @@ fs.mkdir('./src/jsx', 0777, function(err) {
         console.log("Folder for bundle.js created to serve code");
     }
 });
+// Secondly create the css folder if it doesn't exist aswell
+fs.mkdir('./src/css', 0777, function(err) {
+    if (!err) {
+        console.log("Folder for bundle.js created to serve code");
+    }
+});
 // Definitng the output path for our bundle file
 var outputPath = __dirname + '/src/jsx'
 
@@ -41,7 +47,6 @@ module.exports = {
             test: /\.scss$/,
             loader: 'style!css!sass' // For use with the webpack dev server
             // loader: ExtractTextPlugin.extract(["css","postcss", "sass"]) // For use with the production server (Eg splitting out the css file)
-
         }],
     },
     postcss: [ autoprefixer({ browsers: ['last 3 versions'] }) ],
