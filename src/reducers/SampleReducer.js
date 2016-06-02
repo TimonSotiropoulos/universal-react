@@ -14,10 +14,7 @@ import ACTION from '../baseActions';
 
 // const defaultState = new Immutable.List();
 const defaultState = {
-    users: [
-        {name: 'Timon'},
-        {name: 'Chris'}
-    ]
+    name: 'Timon'
 };
 
 export default function sampleReducer(state = defaultState, action) {
