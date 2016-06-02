@@ -5,7 +5,7 @@ import React from 'react';
 import { render } from 'react-dom';
 import { createStore, combineReducers } from 'redux';
 import { Provider } from 'react-redux';
-import * as reducers from 'reducers';
+import * as reducers from './reducers';
 import { fromJS } from 'immutable';
 import { Router, browserHistory } from 'react-router';
 

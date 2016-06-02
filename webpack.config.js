@@ -46,7 +46,7 @@ module.exports = {
         {
             test: /\.scss$/,
             loader: 'style!css!sass' // For use with the webpack dev server
-            // loader: ExtractTextPlugin.extract(["css","postcss", "sass"]) // For use with the production server (Eg splitting out the css file)
+            // // loader: ExtractTextPlugin.extract(["css","postcss", "sass"]) // For use with the production server (Eg splitting out the css file)
         }],
     },
     postcss: [ autoprefixer({ browsers: ['last 3 versions'] }) ],

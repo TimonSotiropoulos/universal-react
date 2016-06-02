@@ -6,7 +6,8 @@ import { createStore, combineReducers } from 'redux';
 import { Provider } from 'react-redux';
 import { match, RoutingContext } from 'react-router';
 import ReactDOMServer from 'react-dom/server';
-import * as reducers from 'reducers';
+import * as reducers from './reducers';
+import { createLocation } from 'history';
 import express from 'express';
 import nunjucks from 'nunjucks';
 
@@ -26,7 +27,7 @@ app.use('/', express.static(__dirname));
 app.set('port', (process.env.PORT || 3000))
 
 app.get('*', (req, res) => {
-    const location = createLocation(req.url);
+    // const location = createLocation(req.url);
     const reducer = combineReducers(reducers);
     const store = createStore(reducer);
 
@@ -38,9 +39,10 @@ app.get('*', (req, res) => {
             </Provider>
         )
 
-        const initialState = store.getState();
-
+        // The initial Markup for our react components
         res.locals.reactMarkup = reactMarkup;
+        // The initial State of our Redux Application
+        res.locals.initialState = JSON.stringify(store.getState());
 
         if (error) {
             res.status(500).send(error.message);

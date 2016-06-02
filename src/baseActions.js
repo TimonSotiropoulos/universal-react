@@ -10,7 +10,7 @@
  * your app in different places.
  */
 
-default export {
+export default {
     CREATE_USER: 'CREATE_USER',
     // More declarations would go here for all your different types of actions
 }
