@@ -28,7 +28,7 @@ export default class App extends Component {
     render() {
         return (
             <div>
-                <h1>Reach Universal Baby</h1>
+                <h1>Reach Universal Baby NOW!</h1>
                 {/* START SUB COMPONENTS INJECTION */}
                 {/* The Code Below is where we are inserting our subroute components */}
                 { this.props.children }

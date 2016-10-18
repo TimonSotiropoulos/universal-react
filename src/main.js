@@ -12,18 +12,19 @@ import { Router, browserHistory } from 'react-router';
 // Routes defined here!
 import routes from './routes/routes.js';
 
-
 // Import styling here
 require('./scss/main.scss');
 
 // Get our Initial State from our server
-let initialState = window.__INITIAL_STATE__;
+var initialState = window.__INITIAL_STATE__;
 
 // Transform the state into Immutable.js collections,
 // But leave top level keys untouched for Redux.
-Object.keys(initialState).forEach((key) => {
-    initialState[key] = fromJS(initialState[key]);
-});
+if (initialState) {
+    Object.keys(initialState).forEach((key) => {
+        initialState[key] = fromJS(initialState[key]);
+    });
+}
 
 const reducer = combineReducers(reducers);
 const store = createStore(reducer, initialState);
@@ -38,5 +39,4 @@ const Application = (
 
 // App Rendering Here!
 const mountNode = document.getElementById('app');
-// Finally, render that fool!
 render(Application, mountNode);

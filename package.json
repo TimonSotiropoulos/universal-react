@@ -4,7 +4,7 @@
   "description": "A Universal/Isomorphic React Application",
   "main": "index.js",
   "scripts": {
-    "development": "cp src/views/index.html src/public/index.html && cp -r src/imgs src/public/imgs && NODE_ENV=development webpack && webpack-dev-server --content-base src/public/ --hot --inline --devtool inline-source-map --history-api-fallback",
+    "development": "cp src/views/index.html src/public/index.html && cp -r src/imgs src/public/imgs && mkdir src/public/css && cp src/css/styles.css src/public/css && NODE_ENV=development webpack && webpack-dev-server --content-base src/public/ --hot --inline --devtool inline-source-map --history-api-fallback",
     "production": "rm -rf src/public/index.html && NODE_ENV=production webpack -p && NODE_ENV=production node app.js",
     "start": "npm run production"
   },
@@ -40,7 +40,7 @@
   "devDependencies": {
     "babel-preset-es2015": "^6.9.0",
     "babel-preset-react": "^6.5.0",
-    "react-hot-loader": "^1.3.0",
+    "react-hot-loader": "^3.0.0-beta.4",
     "webpack-dev-server": "^1.14.1"
   }
 }

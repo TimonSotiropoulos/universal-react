@@ -4,14 +4,12 @@
 
 var fs = require('fs');
 var autoprefixer = require('autoprefixer');
+var webpack = require('webpack');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 // Setup the React Hot Loader if we are working in the development environment
-if (process.env.NODE_ENV === 'development') {
-    var loaders = ['react-hot', 'babel'];
-} else {
-    var loaders = ['babel'];
-}
+var loaders = ['babel'];
+
 // Here we create the path that our bundled file will be saved too
 fs.mkdir('./src/jsx', 0777, function(err) {
     if (!err) {
@@ -31,7 +29,9 @@ var outputPath = __dirname + '/src/jsx'
 // The modules we are using
 module.exports = {
     devtool: 'eval',
-    entry: './src/main.js',
+    entry: [
+        './src/main.js'
+    ],
     output: {
         path: outputPath,
         filename: 'bundle.js',
@@ -46,11 +46,12 @@ module.exports = {
         {
             test: /\.scss$/,
             loader: 'style!css!sass' // For use with the webpack dev server
-            // // loader: ExtractTextPlugin.extract(["css","postcss", "sass"]) // For use with the production server (Eg splitting out the css file)
+            // loader: ExtractTextPlugin.extract(["css","postcss", "sass"]) // For use with the production server (Eg splitting out the css file)
         }],
     },
     postcss: [ autoprefixer({ browsers: ['last 3 versions'] }) ],
     plugins: [
+        new webpack.HotModuleReplacementPlugin(),
         new ExtractTextPlugin("../css/styles.css", {
             allChunks: true,
             disable: true
