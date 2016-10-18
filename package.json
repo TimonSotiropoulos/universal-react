@@ -4,7 +4,7 @@
   "description": "A Universal/Isomorphic React Application",
   "main": "index.js",
   "scripts": {
-    "development": "cp src/views/index.html src/public/index.html && cp -r src/imgs src/public/imgs && mkdir src/public/css && cp src/css/styles.css src/public/css && NODE_ENV=development webpack && webpack-dev-server --content-base src/public/ --hot --inline --devtool inline-source-map --history-api-fallback",
+    "development": "cp src/views/index.html src/public/index.html && cp -r src/imgs src/public/imgs && mkdir -p src/public/css && cp src/css/styles.css src/public/css && NODE_ENV=development webpack && webpack-dev-server webpack.dev.server.js",
     "production": "rm -rf src/public/index.html && NODE_ENV=production webpack -p && NODE_ENV=production node app.js",
     "start": "npm run production"
   },
